@@ -1,0 +1,46 @@
+/* ----------------------------------------------------------
+// GSAP HOME: ScrollTo Anchor
+---------------------------------------------------------- */
+  // Scroll to a given hash, preventing the event given if there is one
+  function scrollToHash(hash, e) {
+
+    const elem = hash ? document.querySelector(hash) : false;
+
+    if(elem) {
+      if(e) e.preventDefault();
+      var winwidth = $(window).innerWidth();
+      if(winwidth  < 1000){
+        gsap.to(window, {scrollTo: { y: elem, offsetY: 84}});
+        // gsap.to(window, {scrollTo: { y: elem}});
+      } else {
+        gsap.to(window, {scrollTo: { y: elem, offsetY: 119}});
+        // gsap.to(window, {scrollTo: { y: elem}});
+      }
+    }
+  }
+  
+  // If a link's href is within the current page, scroll to it instead
+  document.querySelectorAll('a[href]').forEach(a => {
+    a.addEventListener('click', e => {
+      scrollToHash(getSamePageAnchor(a), e);
+    });
+  });
+  
+  // Scroll to the element in the URL's hash on load
+  scrollToHash(window.location.hash);
+  
+/* ----------------------------------------------------------
+// GSAP: HOME
+---------------------------------------------------------- 
+document.addEventListener("DOMContentLoaded", (event) => {
+    gsap.registerPlugin(ScrollTrigger,Observer,ScrollToPlugin,TextPlugin,RoughEase,ExpoScaleEase,SlowMo)
+    
+
+    gsap.defaults({ease: "none"});
+
+    const tl = gsap.timeline({repeat:0, repeatDelay:1, yoyo:false});
+    tl.to(".home-cover .tagline", {duration: 3, text:"Welcome To"})
+});
+
+*/
+

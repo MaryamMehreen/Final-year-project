@@ -1,0 +1,241 @@
+
+/* body {
+  background: url('https://images.pexels.com/photos/949587/pexels-photo-949587.jpeg?auto=compress&cs=tinysrgb&w=600') no-repeat center center/cover;
+  min-height: 100vh;
+  padding: 2rem;
+  color: #333;
+} */
+
+
+
+.detail-btn {
+  background: #009688;
+  color: white;
+}
+
+.detail-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Main Container */
+.student-container {
+  max-width: 1200px;
+  margin: auto;
+  background: rgba(238, 238, 238, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+  padding: 5rem;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: 700;
+  
+  color: #124463;
+}
+
+
+.top-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.top-bar input {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border: 2px solid #124463;
+  font-size: 1rem;
+  transition: 0.3s ease;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.top-bar input:focus {
+  outline: none;
+  border-color: #5c5b57;
+  box-shadow: 0 0 8px #124463;
+}
+
+.add-btn {
+
+  padding: 14px 26px;
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 800px;
+  font-size: 5rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.add-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px #124463;
+}
+
+
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(40, 38, 38, 0.1);
+  background: #124463;
+}
+
+.student-table th,
+.student-table td {
+  padding: 16px;
+  text-align: center;
+  border-bottom: 1px solid #f1eaea;
+  font-size: 1rem;
+  color:white;
+}
+
+.student-table th {
+  background-color: #1b587d;
+  color: #f7f5f5;
+  font-weight: 600px;
+}
+
+.student-table tr:hover {
+  background-color: #4a4646;
+  color:rgb(3, 3, 3);
+}
+
+
+.student-table button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+
+.student-table button:first-child {
+  background: #a0a9ae;
+  color: white;
+}
+
+.student-table button:last-child {
+  background: #3d309d;
+  color: white;
+}
+
+.student-table button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  width: 400px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-content input,
+.modal-content select {
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.modal-content input:focus,
+.modal-content select:focus {
+  border-color: #00acc1;
+  outline: none;
+}
+
+/* Modal Buttons */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modal-actions button {
+  padding: 12px 20px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.modal-actions button:first-child {
+  background: #00bcd4;
+  color: #fff;
+}
+
+.modal-actions button:last-child {
+  background: #cfd8dc;
+  color: #333;
+}
+
+.modal-actions button:hover {
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .add-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

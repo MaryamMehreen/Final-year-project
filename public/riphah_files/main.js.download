@@ -1,0 +1,620 @@
+
+/* ----------------------------------------------------------
+// Instantiate Lozad
+// <img class="lozad" data-src="image.png">
+// <div class="lozad" data-background-image="image.png"></div>
+---------------------------------------------------------- */
+const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+observer.observe();
+
+
+/* ----------------------------------------------------------
+// GSAP: Register Plugins
+---------------------------------------------------------- */
+gsap.registerPlugin(ScrollTrigger, Observer, ScrollToPlugin, TextPlugin, RoughEase, ExpoScaleEase, SlowMo);
+
+/* ----------------------------------------------------------
+// GSAP: backToTop
+---------------------------------------------------------- */
+const btt = document.querySelector("#backToTop");
+
+btt.addEventListener("click", () => gsap.to(window, {scrollTo: 0}));
+gsap.set(btt, {y: 50});
+
+gsap.to(btt, {
+  y: 0, 
+  autoAlpha: 1, 
+  scrollTrigger: {
+    trigger: "body",
+    start: "top -20%",
+    end: "top -20%",
+    toggleActions: "play none reverse none"
+  }
+});
+
+// Detect if a link's href goes to the current page
+function getSamePageAnchor (link) {
+    if (
+      link.protocol !== window.location.protocol ||
+      link.host !== window.location.host ||
+      link.pathname !== window.location.pathname ||
+      link.search !== window.location.search
+    ) {
+      return false;
+    }
+  
+    return link.hash;
+}
+  
+/* ----------------------------------------------------------
+// GSAP: ScrollTo Anchor
+---------------------------------------------------------- */
+// Scroll to a given hash, preventing the event given if there is one
+function scrollToHash(hash, e) {
+    const elem = hash ? document.querySelector(hash) : false;
+    if(elem) {
+        if(e) e.preventDefault();
+        var winwidth = $(window).innerWidth();
+        if(winwidth  < 1000){
+          gsap.to(window, {scrollTo: { y: elem, offsetY: 84}});
+          // gsap.to(window, {scrollTo: { y: elem}});
+        } else {
+          gsap.to(window, {scrollTo: { y: elem, offsetY: 119}});
+          // gsap.to(window, {scrollTo: { y: elem}});
+        }
+    }
+}
+  
+// If a link's href is within the current page, scroll to it instead
+document.querySelectorAll('a[href]').forEach(a => {
+    a.addEventListener('click', e => {
+      scrollToHash(getSamePageAnchor(a), e);
+    });
+});
+  
+// Scroll to the element in the URL's hash on load
+scrollToHash(window.location.hash);
+  
+/* ----------------------------------------------------------
+// HOME: COVER/HEADER TRANSITION
+---------------------------------------------------------- */
+$(window).on('scroll', function() {
+    if ($(window).scrollTop() > 120) {
+    //if ($(window).scrollTop() > 450) {
+        $('.home-page').addClass('home-header-default');
+    } else {
+        $('.home-page').removeClass('home-header-default');
+    }
+});
+
+
+
+
+/* ----------------------------------------------------------
+// HEADER TRANSITION
+---------------------------------------------------------- */
+/*
+document.addEventListener('DOMContentLoaded', () => {
+    var pageheader = document.getElementById('page-header-container');
+    window.onscroll = function (e) {
+        if (this.oldScroll > this.scrollY) {
+                if (window.scrollY < 450) {
+                    $('.home-page').removeClass('home-header-default');
+                }
+                pageheader.classList.remove('page-header-hide');
+        } else if (this.oldScroll < this.scrollY) {
+            if (window.scrollY > 250) {
+                pageheader.classList.add('page-header-hide');
+            }
+        }
+        this.oldScroll = this.scrollY;
+    };
+});
+*/
+
+/* ----------------------------------------------------------
+// SIDEBAR: OPEN/CLOSE MORE
+---------------------------------------------------------- */
+
+$("#sidebar-pinned h5").click(function(e){
+    e.stopPropagation();
+    var winwidth = $(window).innerWidth();
+    if(winwidth  < 1000){
+        $(this).siblings("ul").slideToggle(150);
+    }
+});
+$(window).click(function() {
+    var winwidth = $(window).innerWidth();
+    if(winwidth  < 1000){
+        $("#sidebar-pinned h5").siblings("ul").hide(150);
+    }
+});
+/* ----------------------------------------------------------
+// TOGGLE MORE CONTENT
+---------------------------------------------------------- */
+$(".toggle-more-content-show").click(function(){
+    $(this).siblings("div.toggle-more-content-container").show(250);
+    $(this).hide();
+    $(this).siblings("div.toggle-more-content-hide").show();
+});
+$(".toggle-more-content-hide").click(function(){
+    $(this).siblings("div.toggle-more-content-container").hide(250);
+    $(this).hide();
+    $(this).siblings("div.toggle-more-content-show").show();
+});
+
+
+
+/* ----------------------------------------------------------
+// HOME: ACCORDIAN PANEL
+---------------------------------------------------------- */
+$(".accordian-panel-trigger").click(function(){
+    $(this).parentsUntil( ".accordian-panel" ).parent().toggleClass("accordian-panel-close");
+});
+
+
+/* ----------------------------------------------------------
+// ADJUSTING FOOTER BOTTOM MARGIN IF SIDEBAR PINNED
+---------------------------------------------------------- */
+if ( $( "#sidebar-pinned" ).length ) {
+    $("#page-footer").addClass("margin-for-sidebar-pinned");
+}
+
+/* ----------------------------------------------------------
+// HEADER & SEARCH BUTTONS
+---------------------------------------------------------- */
+$(".navbar-menu-btn span").click(function(){
+    $(".navbar-chat").hide();
+    $(".navbar-search").hide();
+    $(".navbar-menu").show(250);
+    $(".navbar-menu-btn").hide();
+    $(".navbar-menu-btn-close").show();
+    $(".navbar-chat-btn-close").hide();
+
+    $(".navbar-chat-btn-close").hide();
+    $(".navbar-search-btn-close").hide();
+    $(".navbar-chat-btn").show();
+    $(".navbar-search-btn").show();
+    
+});
+$(".navbar-menu-btn-close").click(function(){
+    $(".navbar-menu-btn-close").hide();
+    $(".navbar-menu-btn").show();
+    $(".navbar-menu").hide(250);
+
+    $(".navbar-chat-btn-close").hide();
+    $(".navbar-search-btn-close").hide();
+    $(".navbar-chat-btn").show();
+    $(".navbar-search-btn").show();
+});
+
+$(".navbar-search-btn span").click(function(){
+    var winwidth = $(window).innerWidth();
+    if(winwidth <= 768){
+        $(".navbar-menu").hide();
+        $(".navbar-menu-btn-close").hide();
+        $(".navbar-menu-btn").show();
+        $(".navbar-chat").hide();
+        $(".navbar-chat-btn-close").hide();
+        $(".navbar-chat-btn").show();
+    }
+    $(".navbar-chat").hide();
+    $(".navbar-chat-btn-close").hide();
+    $(".navbar-chat-btn").show();
+    $(".navbar-search").show(250);
+    $(".navbar-search-btn").hide();
+    $(".navbar-search-btn-close").show();
+});
+
+$(".navbar-search-btn-close span").click(function(){
+    var winwidth = $(window).innerWidth();
+    if(winwidth <= 768){
+        $(".navbar-menu").hide();
+        $(".navbar-menu-btn-close").hide();
+        $(".navbar-menu-btn").show();
+        $(".navbar-chat").hide();
+        $(".navbar-chat-btn-close").hide();
+        $(".navbar-chat-btn").show();
+    }
+    $(".navbar-chat").hide();
+    $(".navbar-chat-btn-close").hide();
+    $(".navbar-chat-btn").show();
+    $(".navbar-search").hide(250);
+    $(".navbar-search-btn-close").hide();
+    $(".navbar-search-btn").show();
+});
+
+
+$(".navbar-chat-btn span").click(function(){
+    var winwidth = $(window).innerWidth();
+    if(winwidth <= 768){
+        $(".navbar-menu").hide();
+        $(".navbar-menu-btn-close").hide();
+        $(".navbar-menu-btn").show();
+        $(".navbar-search").hide();
+        $(".navbar-search-btn-close").hide();
+        $(".navbar-search-btn").show();
+    }
+    $(".navbar-search").hide();
+    $(".navbar-search-btn-close").hide();
+    $(".navbar-search-btn").show();
+    $(".navbar-chat").show(250);
+    $(".navbar-chat-btn").hide();
+    $(".navbar-chat-btn-close").show();
+});
+
+$(".navbar-chat-btn-close span").click(function(){
+    var winwidth = $(window).innerWidth();
+    if(winwidth <= 768){
+        $(".navbar-menu").hide();
+        $(".navbar-menu-btn-close").hide();
+        $(".navbar-menu-btn").show();
+        $(".navbar-search").hide();
+        $(".navbar-search-btn-close").hide();
+        $(".navbar-search-btn").show();
+    }
+    $(".navbar-search").hide();
+    $(".navbar-search-btn-close").hide();
+    $(".navbar-search-btn").show();
+    $(".navbar-chat").hide(250);
+    $(".navbar-chat-btn-close").hide();
+    $(".navbar-chat-btn").show();
+});
+
+
+/* ----------------------------------------------------------
+// STICKY CHAT/MESSAGE ICONS ON DESKTOP ONLY
+---------------------------------------------------------- */
+$('#sticky-chat-icon').on('click', function() {
+    $('.navbar-chat-btn span').trigger('click');
+});
+
+/* ----------------------------------------------------------
+// RESETTING BUTTON / MENUS
+---------------------------------------------------------- */
+function androidOrIOS() {
+    const userAgent = navigator.userAgent;
+    if(/android/i.test(userAgent)){
+        return 'android';
+    }
+    if(/iPad|iPhone|iPod/i.test(userAgent)){
+        return 'ios';
+    }
+}
+var os = androidOrIOS();
+
+/* ----------------------------------------------------------
+// RESETTING BUTTON / MENUS: OTHER THAN 'ANDROID'
+---------------------------------------------------------- */
+if (os !== "android") {
+    window.onresize = function() {
+        var winwidth = $(window).innerWidth();
+        if(winwidth  < 1000){
+            $(".navbar-menu").hide();
+            $(".navbar-menu-btn-close").hide();
+            $(".navbar-menu-btn").show();
+            $(".navbar-search").hide();
+            $(".navbar-search-btn-close").hide();
+            $(".navbar-search-btn").show();
+            $(".navbar-chat").hide();
+            $(".navbar-chat-btn-close").hide();
+            $(".navbar-chat-btn").show();
+            $("#sidebar-pinned ul").hide();
+        }
+        else {
+            $(".navbar-menu").show();
+            $(".navbar-menu-btn-close").hide();
+            $(".navbar-menu-btn").hide();
+            $(".navbar-search").hide();
+            $(".navbar-search-btn-close").hide();
+            $(".navbar-search-btn").show();
+            $(".navbar-chat").hide();
+            $(".navbar-chat-btn-close").hide();
+            $(".navbar-chat-btn").show();
+            $("#sidebar-pinned ul").show();
+        }
+    };
+}
+
+/* ----------------------------------------------------------
+// CLOSING MENUS ON ESC KEY
+---------------------------------------------------------- */
+$(document).on('keyup',function(evt) {
+    if (evt.keyCode == 27) {
+        var winwidth = $(window).innerWidth();
+        if(winwidth  < 1000){
+            $(".navbar-menu").hide();
+            $(".navbar-menu-btn-close").hide();
+            $(".navbar-menu-btn").show();
+            $(".navbar-search").hide();
+            $(".navbar-search-btn-close").hide();
+            $(".navbar-search-btn").show();
+            $(".navbar-chat").hide();
+            $(".navbar-chat-btn-close").hide();
+            $(".navbar-chat-btn").show();
+        }
+        else {
+            $(".navbar-menu").show();
+            $(".navbar-menu-btn-close").hide();
+            $(".navbar-menu-btn").hide();
+            $(".navbar-search").hide();
+            $(".navbar-search-btn-close").hide();
+            $(".navbar-search-btn").show();
+            $(".navbar-chat").hide();
+            $(".navbar-chat-btn-close").hide();
+            $(".navbar-chat-btn").show();
+        }
+    }
+});
+
+/* ----------------------------------------------------------
+// ADD PAGINATION TO TABLE
+// BASED ON: https://www.sitepoint.com/simple-pagination-html-css-javascript/
+---------------------------------------------------------- */
+function addPaginationToTable(pagesize, pagedtableContainerElement) {
+
+    // const content = document.querySelector('.paged-table'); 
+    const content = pagedtableContainerElement; 
+
+    const itemsPerPage = pagesize;
+    let currentPage = 0;
+    const items = Array.from(content.getElementsByTagName('tr')).slice(1);
+
+    function showPage(page) {
+        const startIndex = page * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        items.forEach((item, index) => {
+        item.classList.toggle('paged-table-hidden', index < startIndex || index >= endIndex);
+        });
+        updateActiveButtonStates();
+    }
+    
+    function createPageButtons() {
+        if (items.length > itemsPerPage) {
+            const totalPages = Math.ceil(items.length / itemsPerPage);
+            const paginationContainer = document.createElement('div');
+            const paginationDiv = document.body.appendChild(paginationContainer);
+            paginationContainer.classList.add('paged-table-pagination');
+        
+            // Add page buttons
+            for (let i = 0; i < totalPages; i++) {
+            const pageButton = document.createElement('button');
+            pageButton.textContent = i + 1;
+            pageButton.addEventListener('click', () => {
+                currentPage = i;
+                showPage(currentPage);
+                updateActiveButtonStates();
+            });
+        
+                content.appendChild(paginationContainer);
+                paginationDiv.appendChild(pageButton);
+            }
+        }
+    }
+    
+    function updateActiveButtonStates() {
+        const pageButtons = document.querySelectorAll('.paged-table-pagination button');
+        pageButtons.forEach((button, index) => {
+        if (index === currentPage) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+        });
+    }
+    
+    createPageButtons(); // Call this function to create the page buttons initially
+    showPage(currentPage);
+
+}
+
+/* ----------------------------------------------------------
+// SORT TABLE COLUMNS
+---------------------------------------------------------- */
+function sortTable(n, tableElement) {
+    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    table = tableElement;
+
+    switching = true;
+    //Set the sorting direction to ascending:
+    dir = "asc"; 
+    /*Make a loop that will continue until
+    no switching has been done:*/
+    while (switching) {
+        //start by saying: no switching is done:
+        switching = false;
+        rows = table.rows;
+        /*Loop through all table rows (except the
+        first, which contains table headers):*/
+        for (i = 1; i < (rows.length - 1); i++) {
+            //start by saying there should be no switching:
+            shouldSwitch = false;
+            /*Get the two elements you want to compare,
+            one from current row and one from the next:*/
+            x = rows[i].getElementsByTagName("TD")[n];
+            y = rows[i + 1].getElementsByTagName("TD")[n];
+            /*check if the two rows should switch place,
+            based on the direction, asc or desc:*/
+            if (dir == "asc") {
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch= true;
+                    break;
+                }
+            } else if (dir == "desc") {
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    //if so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            /*If a switch has been marked, make the switch
+            and mark that a switch has been done:*/
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+            //Each time a switch is done, increase this count by 1:
+            switchcount ++;      
+        } else {
+            /*If no switching has been done AND the direction is "asc",
+            set the direction to "desc" and run the while loop again.*/
+            if (switchcount == 0 && dir == "asc") {
+                dir = "desc";
+                switching = true;
+            }
+        }
+    }
+}
+
+/* ----------------------------------------------------------
+// ADD TABLE SORTING TO PAGED TABLE
+---------------------------------------------------------- */
+function sortTablePagedTable(n, tableElement, pagesize, pagedtableContainerElement) {
+    var pagedRows;
+
+    pagedRows = tableElement.rows;
+
+    for (i = 1; i < (pagedRows.length); i++) {
+        pagedRows[i].classList.remove("paged-table-hidden");
+    }
+
+    sortTable(n, tableElement);
+
+    const pagedTablePagination = pagedtableContainerElement.querySelector(".paged-table-pagination");
+    pagedTablePagination.remove();
+
+    addPaginationToTable(pagesize, pagedtableContainerElement);
+}
+
+/* ----------------------------------------------------------
+// ADD TABLE SORTING
+---------------------------------------------------------- */
+function addTableSorting(numberOfColumns, tableElement, isPaged=false, pagesize=0, pagedtableContainerElement=null) {
+    var tableElementRow = tableElement.getElementsByTagName("tr")[0];
+
+    if (isPaged) {
+        for (let i = 0; i < numberOfColumns; i++) {
+            tableElementRow.getElementsByTagName("th")[i].onclick = function() { sortTablePagedTable(i, tableElement, pagesize, pagedtableContainerElement); };
+            tableElementRow.getElementsByTagName("th")[i].style.cursor = 'pointer';
+        }
+    }
+    else {
+        for (let i = 0; i < numberOfColumns; i++) {
+            tableElementRow.getElementsByTagName("th")[i].onclick = function() { sortTable(i, tableElement); };
+            tableElementRow.getElementsByTagName("th")[i].style.cursor = 'pointer';
+        }
+    }
+}
+
+
+/* ----------------------------------------------------------
+// MAGNIFIC POPUP
+---------------------------------------------------------- */
+$('.popup-modal-link').magnificPopup({
+    type: 'inline',
+    mainClass: 'mfp-zoom-in',
+    preloader: false
+});
+
+$(document).ready(function() {
+	$('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+		disableOn: 700,
+		type: 'iframe',
+		mainClass: 'mfp-fade',
+		removalDelay: 160,
+		preloader: false,
+
+		fixedContentPos: false
+	});
+});
+
+$('.popup-image').magnificPopup({
+    type: 'image',
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    fixedContentPos: true,
+    mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+    image: {
+        verticalFit: true
+    },
+    zoom: {
+        enabled: true,
+        duration: 300 // don't foget to change the duration also in CSS
+    }
+});
+
+
+/* ----------------------------------------------------------
+// MSG FILERS: FILTER IDS
+---------------------------------------------------------- */
+$(".msgfilter-btns li").click(function(){
+    var msgID = $(this).attr('data-msgfilter');
+    if (msgID == 0) {
+        $(".msgfilter-btns li").removeClass("current");
+        $(".msgfilter-btn-0").addClass("current");
+        $(".msgfilter-item").show(250);
+    }
+    if  (msgID > 0) {
+        $(".msgfilter-btns li").removeClass("current");
+        $(".msgfilter-btn-"+msgID).addClass("current");
+        $(".msgfilter-item").hide(50);
+        $(".msgfilter-"+msgID).show(250);
+    }
+});
+
+/* ----------------------------------------------------------
+// CITY FILERS: CITY IDS
+---------------------------------------------------------- */
+$(".cityfilter-btns li").click(function(){
+    var cityID = $(this).attr('data-cityfilter');
+    if (cityID == 0) {
+        $(".cityfilter-btns li").removeClass("current");
+        $(".cityfilter-btn-0").addClass("current");
+        $(".cityfilter-item").show(250);
+    }
+    if  (cityID > 0) {
+        $(".cityfilter-btns li").removeClass("current");
+        $(".cityfilter-btn-"+cityID).addClass("current");
+        $(".cityfilter-item").hide(50);
+        $(".cityfilter-"+cityID).show(250);
+    }
+});
+
+
+/* ----------------------------------------------------------
+// CITY FILERS: CITY NAME
+---------------------------------------------------------- */
+$(".cf-btns-named li").click(function(){
+    var cityName = $(this).attr('data-cityfilter');
+    if (cityName == 'ALL') {
+        $(".cf-btns-named li").removeClass("current");
+        $(".cityfilter-btn-ALL").addClass("current");
+        $(".cityfilter-item").show(250);
+    }
+    else {
+        $(".cf-btns-named li").removeClass("current");
+        $(".cf-btns-named-"+cityName).addClass("current");
+        $(".cityfilter-item").hide(50);
+        $(".cityfilter-"+cityName).show(250);
+    }
+});
+
+
+/* ----------------------------------------------------------
+// CAMPUS FILERS: CITY IDS
+---------------------------------------------------------- */
+$(".campusfilter-btns li").click(function(){
+    var campusID = $(this).attr('data-campusfilter');
+    if (campusID == 0) {
+        $(".campusfilter-btns li").removeClass("current");
+        $(".campusfilter-btn-0").addClass("current");
+        $(".campusfilter-item").show(250);
+    }
+    if  (campusID > 0) {
+        $(".campusfilter-btns li").removeClass("current");
+        $(".campusfilter-btn-"+campusID).addClass("current");
+        $(".campusfilter").hide(50);
+        $(".campusfilter-"+campusID).show(250);
+    }
+});

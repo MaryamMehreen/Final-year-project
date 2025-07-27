@@ -1,0 +1,131 @@
+.admin-dashboard {
+  font-family: 'Segoe UI', sans-serif;
+  background: rgba(245, 244, 241, 0.05); 
+  min-height: 100vh;
+  padding: 50px 20px;
+  text-align: center;
+  animation: dashboardFadeIn 1s ease;
+}
+
+
+.dashboard-header {
+  background: rgba(33, 53, 85, 0.95);
+  padding: 25px 30px;
+  border-radius: 20px;
+  color: #fff;
+  margin-bottom: 10px;
+  box-shadow: 0 10px 30px rgba(72, 71, 67, 0.3);
+  font-size: 18px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.dashboard-title {
+  font-size: 40px;
+  font-weight: 800;
+  color: #124463;
+  
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 50px;
+}
+
+.dashboard-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  border-radius: 20px;
+  height: 300px;
+  width: 320px; /* Increased from 280px */
+  padding: 45px 30px; /* Increased padding */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.4s ease-in-out;
+  animation: fadeInUp 0.7s ease forwards;
+  position: relative;
+}
+
+
+.dashboard-card:hover {
+  transform: scale(1.05);
+  background: linear-gradient(to right bottom, #c0bdb9, #4b3e57);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  border-color: #d1ecff;
+}
+
+.dashboard-icon {
+  font-size: 50px;
+  margin-bottom: 18px;
+  color: #007aff;
+  transition: color 0.3s;
+}
+
+.dashboard-card:hover .dashboard-icon {
+  color: #004bff;
+}
+
+.dashboard-card h3 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #333;
+  font-weight: 700;
+}
+
+.dashboard-card p {
+  font-size: 20px;
+  color: #555;
+}
+
+.dashboard-card::after {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  bottom: -10px;
+  left: -10px;
+  z-index: -1;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #6dd5ed, #2193b0);
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+  filter: blur(30px);
+}
+
+.dashboard-card:hover::after {
+  opacity: 0.4;
+}
+
+@keyframes dashboardFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-title {
+    font-size: 28px;
+  }
+  .dashboard-card {
+    width: 90%;
+  }
+}

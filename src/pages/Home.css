@@ -1,0 +1,232 @@
+.home-container {
+  margin-top: 0;
+  padding: 30px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+.hero-section {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #124463, #5f7b99);
+  color: white;
+  border-radius: 10px;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: auto;
+}
+
+.cta-button {
+  margin-top: 20px;
+  display: inline-block;
+  background-color: white;
+  color: #1a2a6c;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #e6e6e6;
+}
+
+.features-section {
+  margin: 50px 0;
+  padding: 60px 30px;
+  background: linear-gradient(to bottom right, #e0f7ff, #f5faff);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.features-title {
+  font-size: 32px;
+  color: #003366;
+  margin-bottom:40px;
+  font-weight: bold;
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 1px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px 20px;
+  box-shadow: 0 8px 20px rgba(0, 123, 255, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 123, 255, 0.25);
+}
+
+.feature-card img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: #005c99;
+}
+
+.feature-card p {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.5;
+}
+
+.university-section {
+  background: linear-gradient(135deg, #124463, #5f7b99);
+  padding: 60px 30px;
+  border-radius: 16px;
+  margin-top: 50px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.university-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+}
+
+.university-section h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.university-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.contact-cta {
+  background: #ffffff;
+  padding: 50px 20px;
+  margin-top: 60px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.contact-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.contact-cta h2 {
+  font-size: 26px;
+  margin-bottom: 12px;
+  color: #003366;
+}
+
+.contact-cta p {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: linear-gradient(to right, #124463, #5f7b99);
+  color: white;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 198, 255, 0.4);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button:hover {
+  background: linear-gradient(to right, #124463, #5f7b99);
+  transform: scale(1.05);
+}
+
+/* ===================== */
+/* ✅ Responsive Styling */
+/* ===================== */
+
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+
+  .hero-section p,
+  .features-section p,
+  .university-section p,
+  .contact-cta p {
+    font-size: 15px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    padding: 25px 15px;
+  }
+
+  .university-section h2,
+  .contact-cta h2 {
+    font-size: 22px;
+  }
+
+  .cta-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 40px 15px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.8rem;
+  }
+
+  .features-title {
+    font-size: 24px;
+  }
+
+  .feature-card h3 {
+    font-size: 18px;
+  }
+
+  .feature-card p {
+    font-size: 13px;
+  }
+}

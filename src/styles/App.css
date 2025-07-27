@@ -1,0 +1,262 @@
+/* ========== VARIABLES ========== */
+:root {
+  --skyblue: #124463;
+  --blue: #5f7b99;
+  --blue-dark: #0056b3;
+  --white-translucent: rgba(255, 255, 255, 0.1);
+  --font: 'Segoe UI', sans-serif;
+}
+
+/* ========== BODY & CONTAINER ========== */
+body {
+  margin: 0;
+  font-family: var(--font);
+  background-color: #f9f9f9;
+}
+
+.app-container {
+  display: flex;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar-glass {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: linear-gradient(to bottom, var(--skyblue), var(--blue));
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-right: 2px solid var(--white-translucent);
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 999;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-nav li {
+  margin-bottom: 20px;
+}
+
+.sidebar-nav a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: white;
+  text-decoration: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.sidebar-nav a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.sidebar-icon {
+  font-size: 20px;
+}
+
+.active-link {
+  background: linear-gradient(to right, var(--skyblue), var(--blue));
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+  font-weight: bold;
+}
+
+.sidebar-logo,
+.sidebar-logo1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.sidebar-logo img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-logo1 img {
+  width: 200px;
+  height: 150px;
+  border-radius: 5px;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-logo h3 {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #fff;
+}
+
+.sidebar-footer {
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* ========== NAVBAR ========== */
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  left: 290px;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to right, var(--skyblue), var(--blue));
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-bottom: 2px solid var(--white-translucent);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 25px;
+  z-index: 1000;
+  font-family: var(--font);
+  transition: all 0.3s ease;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.navbar-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+.nav-icon,
+.menu-icon {
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+  color: white;
+}
+
+.nav-icon:hover,
+.menu-icon:hover {
+  transform: scale(1.2);
+  color: #ffffff;
+}
+
+/* ========== DROPDOWN MENU ========== */
+.user-icon {
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  background-color: white;
+  color: #333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 15px 20px;
+  border-radius: 10px;
+  z-index: 1001;
+  width: 220px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.profile-info {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+  margin-left: 250px;
+  margin-top: 60px;
+  padding: 30px;
+  flex-grow: 1;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* ========== ROLE CARDS ========== */
+.role-selection {
+  text-align: center;
+}
+
+.role-cards {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 30px;
+}
+
+.role-card {
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.role-card img {
+  width: 50px;
+  height: 50px;
+}
+
+.role-card p {
+  margin-top: 10px;
+  font-weight: bold;
+}

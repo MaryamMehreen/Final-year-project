@@ -1,0 +1,1 @@
+$(document).ready(function(){$('#new-block').load('includes/services/wp-news-featured.php');});

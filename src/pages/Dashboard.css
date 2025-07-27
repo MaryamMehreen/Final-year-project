@@ -1,0 +1,44 @@
+.chart-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 30px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.chart-card {
+  flex: 1;
+  background: white;
+  border-radius: 25px;
+  padding: 50px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+}
+/* CHART GRID */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Force 2 cards per row */
+  gap: 40px;
+  width: 100%;
+  max-width: 1440px;
+  margin-top: 10px;
+}
+
+/* Optional: Make sure each card doesn't grow too large */
+.chart-card {
+  max-width: 48%;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+  .chart-row {
+    flex-direction: column;
+  }
+
+  .chart-card {
+    max-width: 100%;
+  }
+}
