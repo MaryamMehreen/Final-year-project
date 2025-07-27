@@ -1,3 +1,60 @@
+👩‍💻 User Flow (Frontend + Backend + Database)
+1. User Registration / Login (if applicable)
+Users (students) sign in to the platform.
+
+Each user is identified by a unique username or email.
+
+2. Starting the Quiz
+After login or directly on homepage, the user clicks "Start Quiz".
+
+The frontend displays MCQs or other quiz content.
+
+AI Monitoring (Optional): Webcam/mic access may be requested for real-time invigilation (face detection, eye movement, tab-switch detection).
+
+3. Attempting the Quiz
+User answers all questions on screen.
+
+Upon submission, their:
+
+username
+
+score
+
+totalQuestions
+
+timestamp
+
+and optionally other metadata (like IP, webcam detection flags)
+are sent via a POST request to the backend.
+
+4. Backend API Processing
+The backend receives quiz data at POST /api/quiz/submit.
+
+Data is validated and stored in MongoDB using the Quiz model.
+
+A response is sent confirming "Quiz submitted successfully".
+
+5. MongoDB Storage (Compass View)
+All submissions are saved under the quizapp database → quizzes collection.
+
+Each student's quiz attempt is stored as a separate document.
+
+6. Admin Dashboard (Optional)
+Admin can access GET /api/quiz/all to fetch and display all quiz attempts.
+
+Displayed on frontend using tables or charts.
+
+Useful for review, analysis, or detection of irregularities.
+
+
+
+
+
+
+
+
+
+
 <<<<<<< HEAD
 # Getting Started with Create React App
 
